@@ -4,13 +4,13 @@ import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-header',
-  standalone: true,
   imports: [
     RouterLink,
     RouterLinkActive,
     NgIf
   ],
   templateUrl: './header.component.html',
+  standalone: true,
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {

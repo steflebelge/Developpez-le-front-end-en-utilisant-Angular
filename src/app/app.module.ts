@@ -7,7 +7,7 @@ import {HomeComponent} from './pages/home/home.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {HeaderComponent} from "./header/header.component";
 import {PieChartComponent} from "./pages/home/pie-chart/pie-chart.component";
-import { NgChartsModule } from 'ng2-charts';
+// import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [AppComponent,
@@ -17,7 +17,7 @@ import { NgChartsModule } from 'ng2-charts';
     AppRoutingModule,
     HttpClientModule,
     HeaderComponent,
-    NgChartsModule,
+    // NgChartsModule,
     PieChartComponent],
   providers: [],
   bootstrap: [AppComponent],
