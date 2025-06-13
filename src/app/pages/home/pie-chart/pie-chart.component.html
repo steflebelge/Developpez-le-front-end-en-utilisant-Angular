@@ -1,3 +1,7 @@
 <p>pie-chart works!</p>
 <p>{{ (olympics | async)?.length }} data loaded</p>
-
+<canvas
+  baseChart
+  [data]="pieChartData"
+  [type]="pieChartType"
+></canvas>
