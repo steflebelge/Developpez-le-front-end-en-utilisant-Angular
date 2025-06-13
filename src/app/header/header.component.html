@@ -5,11 +5,12 @@
     [routerLinkActiveOptions]="{exact:true}">
     Accueil
   </a>
-  <a
-    *ngIf="showDetailsLink"
-    routerLink="/details/:idPays"
-    routerLinkActive="active"
-    [routerLinkActiveOptions]="{exact: true}">
-    Détails
-  </a>
+  @if (showDetailsLink) {
+    <a
+      routerLink="/details/:idPays"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{exact: true}">
+      Détails
+    </a>
+  }
 </nav>
