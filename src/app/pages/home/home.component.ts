@@ -10,11 +10,11 @@ import {Olympic} from "../../core/models/Olympic";
     standalone: false
 })
 export class HomeComponent implements OnInit {
-  public olympics$: Observable<Olympic[]> = of([]);
+  public olympics: Observable<Olympic[]> = of([]);
 
   constructor(private olympicService: OlympicService) {}
 
   ngOnInit(): void {
-    this.olympics$ = this.olympicService.getOlympics();
+    this.olympics = this.olympicService.getOlympics();
   }
 }
