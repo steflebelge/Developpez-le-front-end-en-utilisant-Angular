@@ -3,7 +3,7 @@ import {BaseChartDirective, NgChartsModule} from 'ng2-charts';
 import {filter, Observable} from "rxjs";
 import {Olympic} from "../../../core/models/Olympic";
 import {AsyncPipe} from "@angular/common";
-import {ChartConfiguration, ChartType} from "chart.js";
+import {ChartConfiguration, ChartEvent, ChartOptions, ChartType} from "chart.js";
 
 @Component({
   selector: 'app-pie-chart',
@@ -22,8 +22,31 @@ export class PieChartComponent {
     labels: [],
     datasets: [{
       data: []
-    }]
+    }],
   };
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+        labels: {
+          font: {
+            size: 15
+          }
+        }
+      },
+      tooltip: {
+        callbacks: {
+          label: (context) => {
+            const label = context.label || '';
+            const value = context.parsed;
+            return `${label}: ${value} médailles`;
+          }
+        }
+      }
+    }
+  };
+  countryIds: number[] = [];
 
   ngOnInit() {
     this.olympics
@@ -45,13 +68,30 @@ export class PieChartComponent {
           sommeMedailles + participationTmp.medalsCount, 0
       );
       values.push(totalMedals);
+      this.countryIds.push(olympicTmp.id);
     }
 
     this.pieChartData = {
       labels,
       datasets: [{
-        data: values
+        data: values,
+        backgroundColor: ['#B21451', '#8e5ea2', '#3cba9f', '#46B214', "#141FB2" ]
       }]
     };
+  }
+
+  onChartClick(event: { event?: ChartEvent, active?: {}[] }) {
+    if (event.active && event.active.length > 0) {
+      const chartElement = event.active[0];
+      // @ts-ignore
+      const index = chartElement.index;
+
+      const countryId = this.countryIds[index]; // récupère l’id ici
+
+      if (countryId != null) {
+        console.log('id pays : ' + countryId);
+        // this.router.navigate(['/details', countryId]);
+      }
+    }
   }
 }

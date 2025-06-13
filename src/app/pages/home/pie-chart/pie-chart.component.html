@@ -1,7 +1,11 @@
 <p>pie-chart works!</p>
 <p>{{ (olympics | async)?.length }} data loaded</p>
-<canvas
-  baseChart
-  [data]="pieChartData"
-  [type]="pieChartType"
-></canvas>
+<div style="width: 33vw;">
+  <canvas
+    baseChart
+    (chartClick)="onChartClick($event)"
+    [type]="pieChartType"
+    [options]="pieChartOptions"
+    [data]="pieChartData"
+  ></canvas>
+</div>
