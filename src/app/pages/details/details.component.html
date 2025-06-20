@@ -1,0 +1,18 @@
+@if(olympic && participations){
+  <div>
+    <h2>{{olympic.country}}</h2>
+    <span>
+      <p>Nombres de participations</p>
+      <p>{{ olympic.participations?.length }}</p>
+    </span>
+    <span>
+      <p>Nombre de médailles</p>
+      <p>{{ nbMedailles }}</p>
+    </span>
+    <span>
+      <p>Nombre d'athlètes</p>
+      <p>{{ nbAthletes }}</p>
+    </span>
+    <app-pie-chart [olympics]="olympics"/>
+  </div>
+}
