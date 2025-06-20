@@ -5,4 +5,17 @@
 <p>🔍 <strong>Filtrez, analysez, comparez :</strong> utilisez les outils interactifs pour parcourir les données officielles des précédents Jeux Olympiques et mieux comprendre les enjeux des compétitions à venir.</p>
 <p>Ce dashboard a été conçu pour vous offrir une <strong>expérience fluide</strong> sur ordinateur comme sur mobile. Que vous soyez passionné de sport, journaliste ou simple curieux, plongez dans l’univers olympique en un clic !</p>
 
-<app-pie-chart [olympics]="olympics" />
+<div>
+  <h2>Médailles par pays</h2>
+  <span>
+    <p>Nombres de Jeux Olympiques</p>
+    <p>{{ (olympics | async)?.pop()?.participations?.length }}</p>
+  </span>
+  <span>
+    <p>Nombre de pays</p>
+    <p>{{ (olympics | async)?.length }}</p>
+  </span>
+  <div class="pieChart">
+    <app-pie-chart [olympics]="olympics" />
+  </div>
+</div>
