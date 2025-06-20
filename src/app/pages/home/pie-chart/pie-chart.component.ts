@@ -1,23 +1,22 @@
-import {Component, Input, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
 import {BaseChartDirective, NgChartsModule} from 'ng2-charts';
-import {filter, Observable} from "rxjs";
 import {Olympic} from "../../../core/models/Olympic";
-import {AsyncPipe} from "@angular/common";
 import {ChartConfiguration, ChartEvent, ChartOptions, ChartType} from "chart.js";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-pie-chart',
-  imports: [AsyncPipe, NgChartsModule],
+  imports: [NgChartsModule],
   templateUrl: './pie-chart.component.html',
   standalone: true,
   styleUrl: './pie-chart.component.scss'
 })
-export class PieChartComponent {
+export class PieChartComponent implements OnChanges {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
-  @Input() olympics!: Observable<Olympic[]>;
-  olympicList: Olympic[] = [];
-  pieChartType: ChartType = 'pie';
+  @Input() olympics!: Olympic[];
+  @ViewChild('chartCanvas') chartCanvas!: ElementRef<HTMLCanvasElement>;
   // Données du graphique vide
+  pieChartType: ChartType = 'pie';
   pieChartData: ChartConfiguration<'pie'>['data'] = {
     labels: [],
     datasets: [{
@@ -30,6 +29,9 @@ export class PieChartComponent {
       legend: {
         position: 'top',
         labels: {
+          usePointStyle: true,
+          textAlign: 'center',
+          padding: 10,
           font: {
             size: 15
           }
@@ -44,24 +46,28 @@ export class PieChartComponent {
           }
         }
       }
+    },
+    onHover: (event, chartElement) => {
+      if (this.chartCanvas?.nativeElement) {
+        const pointOverSegment = chartElement.length > 0;
+        this.chartCanvas.nativeElement.style.cursor = pointOverSegment ? 'pointer' : 'default';
+      }
     }
   };
   countryIds: number[] = [];
 
-  ngOnInit() {
-    this.olympics
-      .pipe(filter(data => data.length > 0))
-      .subscribe(data => {
-        this.olympicList = data;
-        this.updatePieChart();
-      });
+  constructor(private router: Router) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['olympics'])
+      this.updatePieChart();
   }
 
   updatePieChart() {
     const labels: string[] = [];
     const values: number[] = [];
 
-    for (const olympicTmp of this.olympicList) {
+    for (const olympicTmp of this.olympics) {
       labels.push(olympicTmp.country);
       const totalMedals = olympicTmp.participations.reduce(
         (sommeMedailles, participationTmp) =>
@@ -75,7 +81,7 @@ export class PieChartComponent {
       labels,
       datasets: [{
         data: values,
-        backgroundColor: ['#B21451', '#8e5ea2', '#3cba9f', '#46B214', "#141FB2" ]
+        backgroundColor: ['#B21451', '#8e5ea2', '#3cba9f', '#46B214', "#141FB2"]
       }]
     };
   }
@@ -86,11 +92,10 @@ export class PieChartComponent {
       // @ts-ignore
       const index = chartElement.index;
 
-      const countryId = this.countryIds[index]; // récupère l’id ici
+      const countryId = this.countryIds[index];
 
       if (countryId != null) {
-        console.log('id pays : ' + countryId);
-        // this.router.navigate(['/details', countryId]);
+        this.router.navigate(['/details', countryId]);
       }
     }
   }

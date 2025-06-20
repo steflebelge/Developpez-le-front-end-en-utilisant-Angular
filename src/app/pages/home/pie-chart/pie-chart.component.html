@@ -1,9 +1,11 @@
-<div style="width: 33vw;">
+<div class="pieChart" style="width: 33vw;">
   <canvas
+    #chartCanvas
     baseChart
     (chartClick)="onChartClick($event)"
     [type]="pieChartType"
     [options]="pieChartOptions"
     [data]="pieChartData"
+    [legend]="true"
   ></canvas>
 </div>
