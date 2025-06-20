@@ -1,1 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
+div.mainData{
+  margin: auto;
+  width: 75vw;
+  text-align: center;
+
+  h2{
+    background-color: #04838F;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: white;
+    width: fit-content;
+    margin: 20px auto;
+    font-weight: 100;
+  }
+
+  div#numberContainer {
+    display: flex;
+    justify-content: space-around;
+
+    span {
+      border-radius: 10px;
+      border: 2px solid #04838F;
+      margin: 15px;
+      padding: 15px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      max-width: 35%;
+
+      p:first-child {
+        margin: 0;
+      }
+
+      p:last-child {
+        font-weight: bold;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

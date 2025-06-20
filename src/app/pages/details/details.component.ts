@@ -40,7 +40,6 @@ export class DetailsComponent implements OnInit {
               this.nbMedailles += participationTmp.medalsCount;
               this.nbAthletes += participationTmp.athleteCount;
             });
-            debugger
           }
         });
       }
