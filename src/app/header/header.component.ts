@@ -17,7 +17,7 @@ export class HeaderComponent {
 
   constructor(private router: Router) {
     this.router.events.subscribe(() => {
-      this.showDetailsLink = this.router.url.startsWith('/details/');
+      this.showDetailsLink = this.router.url.includes('/details/');
     });
   }
 

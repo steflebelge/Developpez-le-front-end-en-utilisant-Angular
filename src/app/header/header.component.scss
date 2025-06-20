@@ -3,14 +3,14 @@
   padding: 10px;
   display: flex;
   gap: 15px;
-}
 
-.navbar a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
+  a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
 
-.navbar a.active {
-  text-decoration: underline;
+    &.active {
+      text-decoration: underline;
+    }
+  }
 }
