@@ -25,6 +25,7 @@ export class PieChartComponent implements OnChanges {
   };
   public pieChartOptions: ChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'top',

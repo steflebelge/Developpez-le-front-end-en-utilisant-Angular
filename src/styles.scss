@@ -16,6 +16,7 @@ div.mainData{
   div#numberContainer {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 
     span {
       border-radius: 10px;
@@ -26,7 +27,8 @@ div.mainData{
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      max-width: 35%;
+      max-width: 300px;
+      min-width: 120px;
 
       p:first-child {
         margin: 0;
@@ -37,5 +39,10 @@ div.mainData{
         margin-bottom: 0;
       }
     }
+  }
+
+  div.chartContainer{
+    flex: 1;
+    min-height: 300px;
   }
 }

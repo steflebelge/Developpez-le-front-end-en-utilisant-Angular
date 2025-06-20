@@ -23,6 +23,7 @@ export class LineChartComponent implements OnInit {
   };
   lineChartOptions: ChartConfiguration<'line'>['options'] = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: true,
