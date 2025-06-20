@@ -3,7 +3,11 @@
     routerLink="/"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{exact:true}">
-    Accueil
+    @if (showDetailsLink) {
+      ⬅️ Retour
+    }@else{
+      Accueil
+    }
   </a>
   @if (showDetailsLink) {
     <a class="active">
