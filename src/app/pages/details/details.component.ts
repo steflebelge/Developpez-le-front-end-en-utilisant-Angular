@@ -4,11 +4,13 @@ import {Olympic} from "../../core/models/Olympic";
 import {OlympicService} from "../../core/services/olympic.service";
 import {Participation} from "../../core/models/Participation";
 import {PieChartComponent} from "../home/pie-chart/pie-chart.component";
+import {LineChartComponent} from "./line-chart/line-chart.component";
+import {GlobalService} from "../../core/services/global.service";
 
 @Component({
   selector: 'app-details',
   imports: [
-    PieChartComponent
+    LineChartComponent
   ],
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'
@@ -23,7 +25,8 @@ export class DetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private olympicService: OlympicService,
-              private router: Router
+              private router: Router,
+              private globalService: GlobalService
               ) {}
 
     ngOnInit(): void {
@@ -40,6 +43,9 @@ export class DetailsComponent implements OnInit {
               this.nbMedailles += participationTmp.medalsCount;
               this.nbAthletes += participationTmp.athleteCount;
             });
+
+            if(!this.globalService.hasBeenInitialized)
+              this.globalService.initializeMinMaxNbMedals(this.olympics);
           }
         });
       }
