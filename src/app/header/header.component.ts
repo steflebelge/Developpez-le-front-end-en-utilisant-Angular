@@ -13,8 +13,10 @@ import {Router, RouterLink, RouterLinkActive} from "@angular/router";
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  // Initialisation de la variable neccessaire
   showDetailsLink:boolean = false;
 
+  // Vérifications que l'URL inclut bien '/details/'
   constructor(private router: Router) {
     this.router.events.subscribe(() => {
       this.showDetailsLink = this.router.url.includes('/details/');

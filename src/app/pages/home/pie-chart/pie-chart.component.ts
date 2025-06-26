@@ -12,10 +12,7 @@ import {Router} from "@angular/router";
   styleUrl: './pie-chart.component.scss'
 })
 export class PieChartComponent implements OnChanges {
-  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
-  @Input() olympics!: Olympic[];
-  @ViewChild('chartCanvas') chartCanvas!: ElementRef<HTMLCanvasElement>;
-  // Données du graphique vide
+  // Défintions des variables neccessaires et leur valeur par défaut
   pieChartType: ChartType = 'pie';
   pieChartData: ChartConfiguration<'pie'>['data'] = {
     labels: [],
@@ -23,7 +20,8 @@ export class PieChartComponent implements OnChanges {
       data: []
     }],
   };
-  public pieChartOptions: ChartOptions = {
+  countryIds: number[] = [];
+  pieChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -55,21 +53,38 @@ export class PieChartComponent implements OnChanges {
       }
     }
   };
-  countryIds: number[] = [];
 
-  constructor(private router: Router) {}
+  // Recupération du tableau de participations depuis l'élément parent
+  @Input() olympics!: Olympic[];
 
+  // Récupération des instances des composants enfants neccessaires
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+  @ViewChild('chartCanvas') chartCanvas!: ElementRef<HTMLCanvasElement>;
+
+  // Le constructeur inclut les différents services dont on va avoir besoin
+  constructor(private router: Router) {
+  }
+
+  // La fonction onInit s'execute au chargement du composant
   ngOnChanges(changes: SimpleChanges): void {
+    // Lors de changements sur olympics
     if (changes['olympics'])
       this.updatePieChart();
   }
 
+  // Fonction de génération de la lineChart
   updatePieChart() {
+    // Défintions des variables neccessaires
     const labels: string[] = [];
     const values: number[] = [];
 
+    // On itère sur les olympics
     for (const olympicTmp of this.olympics) {
+
+      // On rajoute le label de l'olympic en cours aux labels
       labels.push(olympicTmp.country);
+
+      // On calcul le nombre de médailles totales
       const totalMedals = olympicTmp.participations.reduce(
         (sommeMedailles, participationTmp) =>
           sommeMedailles + participationTmp.medalsCount, 0
@@ -78,6 +93,7 @@ export class PieChartComponent implements OnChanges {
       this.countryIds.push(olympicTmp.id);
     }
 
+    // on met a jour les données du graphiques avec les valeurs labels et values calculées
     this.pieChartData = {
       labels,
       datasets: [{
@@ -87,14 +103,19 @@ export class PieChartComponent implements OnChanges {
     };
   }
 
+  // Gestion du click sur une partie du camembert
   onChartClick(event: { event?: ChartEvent, active?: {}[] }) {
+    // Si il y a un element
     if (event.active && event.active.length > 0) {
+      // On le recupere ainsi que son index
       const chartElement = event.active[0];
       // @ts-ignore
       const index = chartElement.index;
 
+      // on peux alors en deduire l'id du pays
       const countryId = this.countryIds[index];
 
+      // Si l'id est bien définit, on redirige l'utilisateur sur les details de ce pays
       if (countryId != null) {
         this.router.navigate(['/details', countryId]);
       }

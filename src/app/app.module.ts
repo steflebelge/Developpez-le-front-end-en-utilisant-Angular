@@ -9,15 +9,19 @@ import {HeaderComponent} from "./header/header.component";
 import {PieChartComponent} from "./pages/home/pie-chart/pie-chart.component";
 import {LoaderComponent} from "./shared/loader/loader.component";
 
+// declaration des components et imports neccessaires
 @NgModule({
-  declarations: [AppComponent,
+  declarations: [
+    AppComponent,
     HomeComponent,
     NotFoundComponent],
-  imports: [BrowserModule,
+  imports: [
+    BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     HeaderComponent,
-    PieChartComponent, LoaderComponent],
+    PieChartComponent,
+    LoaderComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

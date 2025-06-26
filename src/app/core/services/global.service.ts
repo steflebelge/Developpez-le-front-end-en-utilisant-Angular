@@ -2,14 +2,18 @@ import { Injectable } from '@angular/core';
 import {Olympic} from "../models/Olympic";
 import {Participation} from "../models/Participation";
 
+// Ce service est injecté au niveau root pour un accès global et commun
 @Injectable({
   providedIn: 'root'
 })
+
 export class GlobalService {
+  // Défintions des varibales neccessaires et leur initialisation
   public minNbMedals: number = -1;
   public maxNbMedals: number = -1;
   public hasBeenInitialized: boolean = false;
 
+  // setter et getter du minimum de nombre de medailles
   setMinNbMedals(newMinNbMedals: number){
     this.minNbMedals = newMinNbMedals;
   }
@@ -17,6 +21,7 @@ export class GlobalService {
     return this.minNbMedals;
   }
 
+  // setter et getter du maximum de nombre de medailles
   setMaxNbMedals(newMaxNbMedals: number){
     this.maxNbMedals = newMaxNbMedals;
   }
@@ -24,6 +29,7 @@ export class GlobalService {
     return this.maxNbMedals;
   }
 
+  // Recherche et set du nombre min et max de medailles
   initializeMinMaxNbMedals(olympics: Olympic[]): void{
     if(olympics.length > 0) {
       olympics.forEach((olympicTmp: Olympic) => {
@@ -48,6 +54,7 @@ export class GlobalService {
     }
   }
 
+  // Fonction de pause du code
   sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }

@@ -13,10 +13,7 @@ import {GlobalService} from "../../../core/services/global.service";
   styleUrl: './line-chart.component.scss'
 })
 export class LineChartComponent implements OnInit {
-
-  constructor(private globalService: GlobalService) {}
-
-  @Input() participations!: Participation[];
+  // Défintions des variables neccessaires et leur valeur par défaut
   lineChartData: ChartConfiguration<'line'>['data'] = {
     labels: [],
     datasets: []
@@ -52,12 +49,23 @@ export class LineChartComponent implements OnInit {
     }
   };
 
+  // Recupération du tableau de participations depuis l'élément parent
+  @Input() participations!: Participation[];
+
+  // Le constructeur inclut les différents services dont on va avoir besoin
+  constructor(private globalService: GlobalService) {}
+
+  // La fonction onInit s'execute au chargement du composant
   ngOnInit(): void {
     this.generateChart();
   }
 
+  // Fonction de génération de la lineChart
   generateChart(): void {
+    // On tri les données
     const sorted = [...this.participations].sort((a, b) => a.year - b.year);
+
+    // On remplit les données a partir des données triées
     this.lineChartData = {
       labels: sorted.map(p => p.year.toString()),
       datasets: [
