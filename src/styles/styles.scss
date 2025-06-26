@@ -1,13 +1,15 @@
+@import "colors";
+
 div.mainData{
   margin: 25px auto;
   width: 75vw;
   text-align: center;
 
   h2{
-    background-color: #04838F;
+    background-color: $primary;
     padding: 10px 20px;
     border-radius: 10px;
-    color: white;
+    color: $third;
     width: fit-content;
     margin: 20px auto;
     font-weight: 100;
@@ -20,7 +22,7 @@ div.mainData{
 
     span {
       border-radius: 10px;
-      border: 2px solid #04838F;
+      border: 2px solid $primary;
       margin: 15px;
       padding: 15px;
       flex: 1;

@@ -31,9 +31,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "src/responsive.scss"
+              "src/styles/colors.scss",
+              "src/styles/styles.scss",
+              "src/styles/responsive.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
             "scripts": [],
             "browser": "src/main.ts"
           },
@@ -99,7 +105,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/styles.scss",
+              "src/styles/responsive.scss",
+              "src/styles/colors.scss"
             ],
             "scripts": []
           }
