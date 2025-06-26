@@ -1,5 +1,8 @@
+//Fichier de gestion du responsive
+//Pour les écrans de moins de 600px
 @media (max-width: 600px) {
-  div.mainData{
+  //On modifie la largeur et les marges de la div mainData
+  div.mainData {
     width: 95vw;
     margin: auto;
   }

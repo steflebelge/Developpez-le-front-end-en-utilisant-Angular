@@ -1,5 +1,7 @@
+//Import des couleurs communes
 @import "colors";
 
+//définition de la div loader
 .loader {
   border: 16px solid $third;
   border-radius: 50%;
@@ -10,12 +12,14 @@
   animation: spin 2s linear infinite;
 }
 
+//Ajout pour fonctionnement sous safari
 /* Safari */
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
   100% { -webkit-transform: rotate(360deg); }
 }
 
+//Définition de l'animation
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

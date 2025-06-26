@@ -1,5 +1,8 @@
+//Fichier de définitions des styles globaux
+//Import des couleurs communes
 @import "colors";
 
+//Style de la div mainData et de ses enfants de manière commune
 div.mainData{
   margin: 25px auto;
   width: 75vw;
