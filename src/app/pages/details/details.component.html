@@ -1,6 +1,9 @@
+<!--Le composant parent est crée-->
 <div class="mainData">
+  <!--  Si il n y a pas encore d'olympic, on affiche un loader-->
   @if (!olympic) {
     <app-loader/>
+    <!--    Si on a un olympic et ses participations, on affiche les données du pays-->
   } @else if (olympic && participations) {
     <h3>{{ olympic.country }}</h3>
     <div id="numberContainer">
@@ -17,6 +20,7 @@
         <p>{{ nbAthletes }}</p>
       </span>
     </div>
+    <!--    Puis on affiche le graphique avec les données neccessaires-->
     <app-line-chart [participations]="participations"/>
   }
 </div>

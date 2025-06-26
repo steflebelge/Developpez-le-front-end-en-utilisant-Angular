@@ -1,3 +1,4 @@
+<!--Texte de présentation -->
 <h2>🏅 Bienvenue sur le Dashboard des Jeux Olympiques</h2>
 
 <p>À l’occasion des prochains Jeux Olympiques, TéléSport vous propose une page interactive pour explorer l’histoire des
@@ -9,12 +10,16 @@
 <p>Ce dashboard a été conçu pour vous offrir une <strong>expérience fluide</strong> sur ordinateur comme sur mobile. Que
   vous soyez passionné de sport, journaliste ou simple curieux, plongez dans l’univers olympique en un clic !</p>
 
+<!--Div contenant les données-->
 <div class="mainData">
   @if (noData && !isLoading) {
+    <!--  Si le chargement est fini mais qu'il n y a aucune donnée, on affiche un message d'erreur-->
     <h3>Aucune donnée disponible</h3>
-  }@else if (!olympics) {
+  } @else if (!olympics) {
+    <!--    Si les données sont entrain d'etre chargées, on affiche un loader -->
     <app-loader/>
   } @else if (olympics.length > 0) {
+    <!--    Une fois les données correctement chargées, on les affiche -->
     <h3>Médailles par pays</h3>
     <div id="numberContainer">
       <span>
@@ -26,6 +31,7 @@
         <p>{{ olympics?.length }}</p>
       </span>
     </div>
+    <!--    Avec le graphique-->
     <app-pie-chart [olympics]="olympics"/>
   }
 </div>

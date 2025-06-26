@@ -1,14 +1,18 @@
+<!--On crée la barre de navigation-->
 <nav class="navbar">
+  <!--  Avec un lien vers l'accueil-->
   <a
     routerLink="/"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{exact:true}">
+    <!--    Si on est sur une page details, on affiche "Retour", sinon "Accueil"-->
     @if (showDetailsLink) {
       ⬅️ Retour
-    }@else{
+    } @else {
       Accueil
     }
   </a>
+  <!--  Si on est sur une page details, on ajout "Details" a la barre de navigation en mode actif-->
   @if (showDetailsLink) {
     <a class="active">
       Détails
