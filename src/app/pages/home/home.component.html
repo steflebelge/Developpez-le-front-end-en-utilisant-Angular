@@ -9,19 +9,21 @@
 <p>Ce dashboard a été conçu pour vous offrir une <strong>expérience fluide</strong> sur ordinateur comme sur mobile. Que
   vous soyez passionné de sport, journaliste ou simple curieux, plongez dans l’univers olympique en un clic !</p>
 
-@if (olympics && olympics.length > 0) {
-  <div class="mainData">
+<div class="mainData">
+  @if (!olympics) {
+    <app-loader/>
+  } @else if (olympics.length > 0) {
     <h3>Médailles par pays</h3>
     <div id="numberContainer">
       <span>
         <p>Nombres de Jeux Olympiques</p>
         <p>{{ olympics[0]?.participations?.length }}</p>
       </span>
-        <span>
+      <span>
         <p>Nombre de pays</p>
         <p>{{ olympics?.length }}</p>
       </span>
     </div>
     <app-pie-chart [olympics]="olympics"/>
-  </div>
-}
+  }
+</div>

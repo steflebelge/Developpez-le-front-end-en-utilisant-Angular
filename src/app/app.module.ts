@@ -7,6 +7,7 @@ import {HomeComponent} from './pages/home/home.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {HeaderComponent} from "./header/header.component";
 import {PieChartComponent} from "./pages/home/pie-chart/pie-chart.component";
+import {LoaderComponent} from "./shared/loader/loader.component";
 
 @NgModule({
   declarations: [AppComponent,
@@ -16,7 +17,7 @@ import {PieChartComponent} from "./pages/home/pie-chart/pie-chart.component";
     AppRoutingModule,
     HttpClientModule,
     HeaderComponent,
-    PieChartComponent],
+    PieChartComponent, LoaderComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

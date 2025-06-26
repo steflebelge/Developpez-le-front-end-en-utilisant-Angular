@@ -11,7 +11,7 @@ import {Participation} from "../../core/models/Participation";
   standalone: false
 })
 export class HomeComponent implements OnInit {
-  olympics: Olympic[] = [];
+  olympics: Olympic[] | undefined = undefined;
 
   constructor(
     private olympicService: OlympicService,
@@ -20,7 +20,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.olympicService.getOlympics().subscribe(data => {
+    this.olympicService.getOlympics().subscribe(async data => {
+      await this.globalService.sleep(500);
       this.olympics = data;
       if(!this.globalService.hasBeenInitialized)
         this.globalService.initializeMinMaxNbMedals(this.olympics);

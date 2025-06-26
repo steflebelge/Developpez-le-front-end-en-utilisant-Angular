@@ -1,5 +1,5 @@
 div.mainData{
-  margin: auto;
+  margin: 25px auto;
   width: 75vw;
   text-align: center;
 
@@ -44,5 +44,9 @@ div.mainData{
   div.chartContainer{
     flex: 1;
     min-height: 300px;
+  }
+
+  app-loader{
+    display: inline-block;
   }
 }

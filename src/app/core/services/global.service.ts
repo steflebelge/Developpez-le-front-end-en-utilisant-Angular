@@ -44,10 +44,12 @@ export class GlobalService {
       });
       this.setMinNbMedals(this.getMinNbMedals() > 10 ? this.getMinNbMedals() - 10 : 0);
       this.setMaxNbMedals(this.getMaxNbMedals() + 10);
-      console.log('MinNbMedals = ' + this.getMinNbMedals());
-      console.log('MaxNbMedals = ' + this.getMaxNbMedals());
       this.hasBeenInitialized = true;
     }
+  }
+
+  sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
 }

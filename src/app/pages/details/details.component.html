@@ -1,5 +1,7 @@
-@if (olympic && participations) {
-  <div class="mainData">
+<div class="mainData">
+  @if (!olympic) {
+    <app-loader/>
+  } @else if (olympic && participations) {
     <h3>{{ olympic.country }}</h3>
     <div id="numberContainer">
       <span>
@@ -16,5 +18,5 @@
       </span>
     </div>
     <app-line-chart [participations]="participations"/>
-  </div>
-}
+  }
+</div>
