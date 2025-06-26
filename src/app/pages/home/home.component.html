@@ -10,7 +10,9 @@
   vous soyez passionné de sport, journaliste ou simple curieux, plongez dans l’univers olympique en un clic !</p>
 
 <div class="mainData">
-  @if (!olympics) {
+  @if (noData && !isLoading) {
+    <h3>Aucune donnée disponible</h3>
+  }@else if (!olympics) {
     <app-loader/>
   } @else if (olympics.length > 0) {
     <h3>Médailles par pays</h3>

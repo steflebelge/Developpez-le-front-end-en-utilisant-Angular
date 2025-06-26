@@ -49,6 +49,9 @@ export class DetailsComponent implements OnInit {
 
             if(!this.globalService.hasBeenInitialized)
               this.globalService.initializeMinMaxNbMedals(this.olympics);
+          }else{
+            this.globalService.hasBeenInitialized = true;
+            await this.router.navigate(['/notFound']);
           }
         });
       }
