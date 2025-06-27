@@ -1,29 +1,73 @@
-# OlympicGamesStarter
+# 🏅 Développez le front-end en utilisant Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
+Ce projet est une application Angular pour recuperer et afficher les données des derniers Jeux Olympiques (ex. médailles, participations…).
 
-Don't forget to install your node_modules before starting (`npm install`).
+---
 
-## Development server
+## 🔧 Technologies utilisées
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Angular** — framework front-end basé sur TypeScript
+- **TypeScript** — langage principal du projet
+- **SCSS** — préprocesseur CSS pour structurer les styles
+- **ng2-charts / Chart.js** — pour les visualisations graphiques
+- **RxJS**, **HttpClient** — gestion des appels API et du flux réactif
+- **Angular CLI** — pour le build, le serveur de développement, etc.
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 🚀 Installation et exécution
 
-## Where to start
+### 1. Cloner le dépôt
 
-As you can see, an architecture has already been defined for the project. It is just a suggestion, you can choose to use your own. The predefined architecture includes (in addition to the default angular architecture) the following:
+```bash
+git clone https://github.com/steflebelge/Developpez-le-front-end-en-utilisant-Angular.git
+cd Developpez-le-front-end-en-utilisant-Angular
+```
 
-- `components` folder: contains every reusable components
-- `pages` folder: contains components used for routing
-- `core` folder: contains the business logic (`services` and `models` folders)
+### 2. Installer les dépendances
 
-I suggest you to start by understanding this starter code. Pay an extra attention to the `app-routing.module.ts` and the `olympic.service.ts`.
+Assurez-vous d’avoir **Node.js** v.20.19.2 et **npm** v.11.4.1 installés sur votre machine.
 
-Once mastered, you should continue by creating the typescript interfaces inside the `models` folder. As you can see I already created two files corresponding to the data included inside the `olympic.json`. With your interfaces, improve the code by replacing every `any` by the corresponding interface.
+```bash
+npm install
+```
 
-You're now ready to implement the requested features.
+### 3. Lancer le serveur de développement
 
-Good luck!
+```bash
+ng serve
+```
+
+Puis ouvrez votre navigateur à l’adresse suivante : [http://localhost:4200](http://localhost:4200)
+
+L’application se recompile automatiquement dès que vous modifiez un fichier source.
+
+---
+
+## ✅ Structure du projet
+
+```
+src/
+├── app/
+│   ├── core/              # services et modèles
+│   ├── header/            # composant de navigation de l’application
+│   ├── pages/             # composants de pages complètes
+│   ├── shared/            # composants réutilisables
+├── assets/                # données JSON, images, etc.
+├── styles.scss            # styles globaux
+└── index.html             # point d’entrée principal
+```
+
+---
+
+## 📦 Build de production
+
+Pour compiler et optimiser l’application Angular en mode production :
+
+```bash
+ng build --prod
+```
+
+Les fichiers générés se trouvent dans `dist/olympic-games-starter/`.
+
+---

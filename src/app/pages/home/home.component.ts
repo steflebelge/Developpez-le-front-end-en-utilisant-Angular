@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
   // La fonction onInit s'execute au chargement du composant
   ngOnInit(): void {
-    // On recupère les olympics a partir du service
+    // On recupère de l'observable des olympics a partir du service
     this.olympicService.getOlympics().subscribe(async data => {
       await this.globalService.sleep(500);
       if (data.length > 0) {
