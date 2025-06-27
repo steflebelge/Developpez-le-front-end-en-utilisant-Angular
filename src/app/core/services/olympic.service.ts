@@ -20,7 +20,8 @@ export class OlympicService {
     private http: HttpClient,
     ) {}
 
-  // Fonction de chargement des olympics a partir de l'URL
+  // Fonction de chargement des données olympiques à partir de l'URL,
+  // puis retourne un Observable contenant le tableau des données olympiques.
   loadInitialData() {
     return this.http.get<Olympic[]>(this.olympicUrl).pipe(
       tap((value) => this.olympics.next(value)),

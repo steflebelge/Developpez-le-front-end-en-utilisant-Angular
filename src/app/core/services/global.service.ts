@@ -31,6 +31,9 @@ export class GlobalService {
 
   // Recherche et set du nombre min et max de medailles
   initializeMinMaxNbMedals(olympics: Olympic[]): void{
+    if (this.hasBeenInitialized) return;
+    this.hasBeenInitialized = true;
+
     if(olympics.length > 0) {
       olympics.forEach((olympicTmp: Olympic) => {
         olympicTmp.participations.forEach((participationTmp: Participation) => {
@@ -50,7 +53,6 @@ export class GlobalService {
       });
       this.setMinNbMedals(this.getMinNbMedals() > 10 ? this.getMinNbMedals() - 10 : 0);
       this.setMaxNbMedals(this.getMaxNbMedals() + 10);
-      this.hasBeenInitialized = true;
     }
   }
 

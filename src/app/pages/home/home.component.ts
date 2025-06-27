@@ -26,23 +26,23 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     // On recupère de l'observable des olympics a partir du service
     this.olympicService.getOlympics().subscribe(async data => {
-      await this.globalService.sleep(500);
+      // Si data n'est pas vide
       if (data.length > 0) {
+        await this.globalService.sleep(500);
+
         // on remplit la variable olympics avec la data recue
         this.olympics = data;
-
-        // Si besoin on initialise le nombres de medailles min et max
-        if (!this.globalService.hasBeenInitialized)
-          this.globalService.initializeMinMaxNbMedals(this.olympics);
-      } else if (this.globalService.hasBeenInitialized) {
+      } else if (this.isLoading) {
+        this.isLoading = false;
+      } else {
         // En cas d'erreur de reception des données, on set les variables aux valeurs neccessaires
         // pour l'affichage d'un message a l utilisateur
         this.noData = true;
-        this.isLoading = false;
-      } else if (!this.isLoading) {
+      }
+
+      // Gestion du cas d'erreur de chargement des données avec changement de page
+      if(this.globalService.hasBeenInitialized && data.length == 0 && !this.isLoading && !this.noData) {
         this.noData = true;
-      } else {
-        this.isLoading = false;
       }
     });
   }

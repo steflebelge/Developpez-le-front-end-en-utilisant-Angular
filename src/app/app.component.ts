@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
 import { OlympicService } from './core/services/olympic.service';
+import {GlobalService} from "./core/services/global.service";
 
 @Component({
     selector: 'app-root',
@@ -11,10 +12,16 @@ import { OlympicService } from './core/services/olympic.service';
 export class AppComponent implements OnInit {
 
   // Ajout de l'olympic service dans l'instance de la classe
-  constructor(private olympicService: OlympicService) {}
+  constructor(
+    private olympicService: OlympicService,
+    private globalService: GlobalService
+  ) {}
 
-  // initialisation du service
+  // Chargement initial des données et initialisation
+  // du min/max medailles du global service
   ngOnInit(): void {
-    this.olympicService.loadInitialData().pipe(take(1)).subscribe();
+    this.olympicService.loadInitialData().pipe(take(1)).subscribe(data => {
+      this.globalService.initializeMinMaxNbMedals(data);
+    });
   }
 }

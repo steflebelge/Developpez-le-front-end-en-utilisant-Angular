@@ -1,10 +1,13 @@
 <!--Le composant parent est crée-->
 <div class="mainData">
-  <!--  Si il n y a pas encore d'olympic, on affiche un loader-->
-  @if (!olympic) {
+  @if (noData && !isLoading) {
+    <!--  Si le chargement est fini mais qu'il n y a aucune donnée, on affiche un message d'erreur-->
+    <app-data-loading-error/>
+  } @else if (!olympic) {
+    <!--    Si les données sont entrain d'etre chargées, on affiche un loader -->
     <app-loader/>
-    <!--    Si on a un olympic et ses participations, on affiche les données du pays-->
   } @else if (olympic && participations) {
+    <!--    Si on a un olympic et ses participations, on affiche les données du pays-->
     <h3>{{ olympic.country }}</h3>
     <div id="numberContainer">
       <span>
