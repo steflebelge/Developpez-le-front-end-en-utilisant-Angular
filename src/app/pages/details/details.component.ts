@@ -46,7 +46,9 @@ export class DetailsComponent implements OnInit {
         this.router.navigate(['/']);
       else {
         // Sinon on recupere l id
-        this.idPays = parseInt(<string>this.route.snapshot.paramMap.get('idPays'));
+        this.idPays = parseInt(
+          <string>this.route.snapshot.paramMap.get('idPays')
+        );
         // On recupère les olympics a partir du service
         this.olympicService.getOlympics().subscribe(async data => {
           // Si data n'est pas vide
@@ -72,7 +74,7 @@ export class DetailsComponent implements OnInit {
             // On itère sur les participations du pays pour calculer
             // le nombre total de medailles et d'athletes pour ce pays
             // et on set les variables correspondantes
-            this.participations?.forEach((participationTmp: Participation) => {
+            this.participations?.forEach((participationTmp: Participation)=> {
               this.nbMedailles += participationTmp.medalsCount;
               this.nbAthletes += participationTmp.athleteCount;
             });

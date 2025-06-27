@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Olympic} from "../models/Olympic";
 import {Participation} from "../models/Participation";
 
@@ -14,27 +14,29 @@ export class GlobalService {
   public hasBeenInitialized: boolean = false;
 
   // setter et getter du minimum de nombre de medailles
-  setMinNbMedals(newMinNbMedals: number){
+  setMinNbMedals(newMinNbMedals: number) {
     this.minNbMedals = newMinNbMedals;
   }
-  getMinNbMedals():number{
+
+  getMinNbMedals(): number {
     return this.minNbMedals;
   }
 
   // setter et getter du maximum de nombre de medailles
-  setMaxNbMedals(newMaxNbMedals: number){
+  setMaxNbMedals(newMaxNbMedals: number) {
     this.maxNbMedals = newMaxNbMedals;
   }
-  getMaxNbMedals():number{
+
+  getMaxNbMedals(): number {
     return this.maxNbMedals;
   }
 
   // Recherche et set du nombre min et max de medailles
-  initializeMinMaxNbMedals(olympics: Olympic[]): void{
+  initializeMinMaxNbMedals(olympics: Olympic[]): void {
     if (this.hasBeenInitialized) return;
     this.hasBeenInitialized = true;
 
-    if(olympics.length > 0) {
+    if (olympics.length > 0) {
       olympics.forEach((olympicTmp: Olympic) => {
         olympicTmp.participations.forEach((participationTmp: Participation) => {
           let minNbMedals: number = this.getMinNbMedals();
@@ -51,7 +53,9 @@ export class GlobalService {
           }
         });
       });
-      this.setMinNbMedals(this.getMinNbMedals() > 10 ? this.getMinNbMedals() - 10 : 0);
+      this.setMinNbMedals(this.getMinNbMedals() > 10
+        ? this.getMinNbMedals() - 10
+        : 0);
       this.setMaxNbMedals(this.getMaxNbMedals() + 10);
     }
   }

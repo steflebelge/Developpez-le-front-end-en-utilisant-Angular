@@ -19,18 +19,6 @@ export class LineChartComponent implements OnInit {
     datasets: []
   };
   lineChartOptions: ChartConfiguration<'line'>['options'] = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: true,
-        position: 'top',
-        labels: {
-          usePointStyle: true,
-          pointStyle: 'circle'
-        }
-      }
-    },
     scales: {
       y: {
         title: {
@@ -44,6 +32,18 @@ export class LineChartComponent implements OnInit {
         title: {
           display: true,
           text: 'Années'
+        }
+      }
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top',
+        labels: {
+          usePointStyle: true,
+          pointStyle: 'circle'
         }
       }
     }
@@ -63,16 +63,22 @@ export class LineChartComponent implements OnInit {
   // Fonction de génération de la lineChart
   generateChart(): void {
     // On tri les données
-    const sorted = [...this.participations].sort((a, b) => a.year - b.year);
+    const participationsTriees = [...this.participations].sort(
+      (a, b) => a.year - b.year
+    );
 
     // On remplit les données a partir des données triées
     this.lineChartData = {
-      labels: sorted.map(p => p.year.toString()),
+      labels: participationsTriees.map(
+        p => p.year.toString()
+      ),
       datasets: [
         {
           label: 'Nombre de médailles',
-          data: sorted.map(p => p.medalsCount),
-          fill: false,
+          data: participationsTriees.map(
+            p => p.medalsCount
+          ),
+          fill: true,
           borderColor: '#04838F',
           tension: 0.5,
           pointBackgroundColor: '#04838F'

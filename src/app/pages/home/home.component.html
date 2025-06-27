@@ -13,7 +13,9 @@
 <!--Div contenant les données-->
 <div class="mainData">
   @if (noData && !isLoading) {
-    <!--  Si le chargement est fini mais qu'il n y a aucune donnée, on affiche un message d'erreur-->
+    <!--  Si le chargement est fini
+    mais qu'il n y a aucune donnée,
+    on affiche un message d'erreur-->
     <app-data-loading-error/>
   } @else if (!olympics) {
     <!--    Si les données sont entrain d'etre chargées, on affiche un loader -->
