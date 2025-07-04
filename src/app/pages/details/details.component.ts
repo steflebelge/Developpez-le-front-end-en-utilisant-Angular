@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Olympic} from "../../core/models/Olympic";
 import {OlympicService} from "../../core/services/olympic.service";
@@ -7,6 +7,7 @@ import {LineChartComponent} from "./line-chart/line-chart.component";
 import {GlobalService} from "../../core/services/global.service";
 import {LoaderComponent} from "../../shared/loader/loader.component";
 import {DataLoadingErrorComponent} from "../../shared/data-loading-error/data-loading-error.component";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-details',
@@ -19,7 +20,7 @@ import {DataLoadingErrorComponent} from "../../shared/data-loading-error/data-lo
   styleUrl: './details.component.scss'
 })
 
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit, OnDestroy {
   // Défintions des variables neccessaires et leur valeur par défaut
   olympics: Olympic[] = [];
   olympic: Olympic | undefined;
@@ -29,6 +30,7 @@ export class DetailsComponent implements OnInit {
   nbAthletes: number = 0;
   isLoading: boolean = true;
   noData: boolean = false;
+  private subscription: Subscription | undefined;
 
 
 
@@ -50,7 +52,7 @@ export class DetailsComponent implements OnInit {
           <string>this.route.snapshot.paramMap.get('idPays')
         );
         // On recupère les olympics a partir du service
-        this.olympicService.getOlympics().subscribe(async data => {
+        this.subscription = this.olympicService.getOlympics().subscribe(async data => {
           // Si data n'est pas vide
           if(data.length > 0) {
             await this.globalService.sleep(500);
@@ -93,4 +95,9 @@ export class DetailsComponent implements OnInit {
         });
       }
     }
+
+  ngOnDestroy(): void {
+    if(this.subscription)
+      this.subscription.unsubscribe();
+  }
 }
